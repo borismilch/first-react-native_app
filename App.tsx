@@ -1,20 +1,46 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import {  NavigationContainer  } from '@react-navigation/native'
+import { createStackNavigator, StackNavigationOptions } from '@react-navigation/stack'
+import { LoginScreen, RegisterScreen, HomeScreen, AddChatScreen, ChatScreen} from './src/views';
+import React from 'react';
+const Stack = createStackNavigator()
+
+const screenOptions: StackNavigationOptions = {
+  headerTitleAlign: "center", 
+  headerTintColor: "#fff",
+  headerStyle: {
+    backgroundColor: "rgb(32, 137, 220)"
+  }
+}
+
+const homeScrenOptions: StackNavigationOptions = {
+  title: "Signal", 
+  headerTitleAlign: "center",
+  headerStyle: {
+    backgroundColor: "white",
+    
+  }
+}
+
+const addChatScreenOptions: StackNavigationOptions = {
+  title: "Add new Contact", 
+  headerTitleAlign: "center",
+  headerTintColor: "#fff",
+  headerStyle: {
+    backgroundColor: "rgb(32, 137, 220)",
+    borderBottomColor: "transparent"
+  }
+}
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer >
+      <Stack.Navigator>
+        <Stack.Screen options={screenOptions} name="login" component={LoginScreen} />
+        <Stack.Screen options={screenOptions} name="register" component={RegisterScreen} />
+        <Stack.Screen options={homeScrenOptions} name="home" component={HomeScreen} />
+        <Stack.Screen options={addChatScreenOptions} name="add_chat" component={AddChatScreen} />
+        <Stack.Screen options={addChatScreenOptions} name="chat" component={ChatScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
